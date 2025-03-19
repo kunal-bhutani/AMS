@@ -44,15 +44,16 @@ public class UserController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadProduct(@RequestParam("file") MultipartFile file) {
+    public String uploadProduct(@RequestParam("file") MultipartFile file) {
         if(file.isEmpty()) {
-            return ResponseEntity.badRequest().body("file is empty");
+            return "file is empty";
         }
         try{
             userService.processExelFile(file);
-            return ResponseEntity.ok("file successfully uploaded");
+            return "file successfully uploaded";
         }catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error in file upload"+  e.getMessage());
+            System.out.println(e.getMessage());
+            return "File upload failed";
         }
     }
 }

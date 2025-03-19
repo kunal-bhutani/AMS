@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.sql.Timestamp;
 
 @Component
 public class HibernateConfig {
@@ -302,4 +303,27 @@ public class HibernateConfig {
     }
 
 
+    public <T> List<T> getEntitiesBetweenDates(Class<T> entityClass, String dateColumn, Timestamp startDate, Timestamp endDate) {
+        Session session = null;
+        try {
+            session = this.getSession();
+            HibernateCriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            JpaCriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(entityClass);
+            JpaRoot<T> root = criteriaQuery.from(entityClass);
+
+            criteriaQuery.select(root).where(
+                    criteriaBuilder.between(root.get(dateColumn), startDate, endDate)
+            );
+
+            return session.createQuery(criteriaQuery).getResultList();
+        } catch (Exception e) {
+            if (session != null && session.getTransaction().isActive()) {
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            this.closeSession(session);
+        }
+        return Collections.emptyList();
+    }
 }

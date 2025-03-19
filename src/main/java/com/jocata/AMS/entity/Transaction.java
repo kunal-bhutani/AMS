@@ -16,7 +16,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
 
@@ -30,17 +30,17 @@ public class Transaction {
     @Column(name = "charge", nullable = false)
     private BigDecimal charge = BigDecimal.ZERO;
 
-    @Column(name = "current_balance",nullable = false)
+    @Column(name = "current_balance",nullable = false ,precision =  20 , scale = 2)
     private BigDecimal currentBalance;
 
-    @Column(name = "description", length = 255)
+    @Column(name = "description")
     private String description;
 
     @Column(name = "transaction_timestamp", nullable = false)
     private Timestamp transactionTimestamp = Timestamp.from(Instant.now());
 
     @Column(name = "date_of_transaction", nullable = false)
-    private LocalDate dateOfTransaction;
+    private LocalDate dateOfTransaction  = LocalDate.now();
 
     public Integer getId() {
         return id;

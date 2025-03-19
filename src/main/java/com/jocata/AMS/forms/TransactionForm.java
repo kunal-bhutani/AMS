@@ -3,11 +3,29 @@ package com.jocata.AMS.forms;
 public class TransactionForm {
     private String id;
     private String amount;
-    private String transactionType;
+    private String accountId;
     private String charge;
     private String currentBalance;
     private String description;
     private String dateOfTransaction;
+    private String timestamp;
+    private String bank;
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
 
     public String getId() {
         return id;
@@ -25,12 +43,12 @@ public class TransactionForm {
         this.amount = amount;
     }
 
-    public String getTransactionType() {
-        return transactionType;
+    public String getAccountId() {
+        return accountId;
     }
 
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public String getCharge() {
