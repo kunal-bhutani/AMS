@@ -3,12 +3,14 @@ package com.jocata.AMS.dao.impl;
 import com.jocata.AMS.config.HibernateConfig;
 import com.jocata.AMS.dao.AccountDao;
 import com.jocata.AMS.entity.Account;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@RequestMapping
+
+@Repository
 public class AccountDaoImpl implements AccountDao {
     private final HibernateConfig hibernateConfig;
 
