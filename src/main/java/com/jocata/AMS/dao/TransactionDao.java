@@ -9,5 +9,5 @@ public interface TransactionDao {
     Transaction create(Transaction transaction);
     List<Transaction> getTransactionsForAccount(Integer accountId);
     List<Transaction> getAllTransactions();
-    public List<Transaction> getTransactionsBetweenDates(LocalDateTime startDate, LocalDateTime endDate);
+
 }

@@ -32,13 +32,7 @@ public class TransactionDaoImpl implements TransactionDao {
         return hibernateConfig.loadEntitiesByCriteria(Transaction.class);
     }
 
-    @Override
-    public List<Transaction> getTransactionsBetweenDates(LocalDateTime startDate, LocalDateTime endDate) {
-        Timestamp startTimestamp = Timestamp.valueOf(startDate);
-        Timestamp endTimestamp = Timestamp.valueOf(endDate);
 
-        return hibernateConfig.getEntitiesBetweenDates(Transaction.class, "timestamp", startTimestamp, endTimestamp);
-    }
 
 
 }

@@ -68,13 +68,12 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void generateTransactionPdf(Integer accountId, Integer month, OutputStream outputStream) {
         List<Transaction> transactions = transactionDao.getTransactionsForAccount(accountId);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         try (PdfWriter writer = new PdfWriter(outputStream);
              PdfDocument pdf = new PdfDocument(writer);
              Document document = new Document(pdf)) {
 
-            document.add(new Paragraph("Transaction Report for Account: " + accountId));
+            document.add(new Paragraph("transaction report for account : " + accountId));
             document.add(new Paragraph("--------------------------------------------"));
 
             for (Transaction transaction : transactions) {
@@ -84,8 +83,7 @@ public class TransactionServiceImpl implements TransactionService {
                                     "Type: " + transaction.getTransactionType() + "\n" +
                                     "Amount: " + transaction.getAmount() + "\n" +
                                     "Charge: " + transaction.getCharge() + "\n" +
-                                    "Balance: " + transaction.getCurrentBalance() + "\n" +
-                                    "Description: " + (transaction.getDescription() != null ? transaction.getDescription() : "N/A") + "\n"
+                                    "Balance: " + transaction.getCurrentBalance() + "\n"
                     ));
                     document.add(new Paragraph("--------------------------------------------"));
                 }
