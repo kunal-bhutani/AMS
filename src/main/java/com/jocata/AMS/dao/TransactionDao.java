@@ -10,5 +10,4 @@ public interface TransactionDao {
     List<Transaction> getTransactionsForAccount(Integer accountId);
     List<Transaction> getAllTransactions();
     public List<Transaction> getTransactionsBetweenDates(LocalDateTime startDate, LocalDateTime endDate);
-    String generateTransactionPdf(LocalDateTime startDate, LocalDateTime endDate);
 }

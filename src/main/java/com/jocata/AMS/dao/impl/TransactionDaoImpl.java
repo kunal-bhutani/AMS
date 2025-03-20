@@ -40,8 +40,5 @@ public class TransactionDaoImpl implements TransactionDao {
         return hibernateConfig.getEntitiesBetweenDates(Transaction.class, "timestamp", startTimestamp, endTimestamp);
     }
 
-    @Override
-    public String generateTransactionPdf(LocalDateTime startDate, LocalDateTime endDate) {
-        return "";
-    }
+
 }

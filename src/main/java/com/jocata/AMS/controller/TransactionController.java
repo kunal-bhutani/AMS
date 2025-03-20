@@ -4,8 +4,10 @@ import com.jocata.AMS.entity.Transaction;
 import com.jocata.AMS.forms.TransactionForm;
 import com.jocata.AMS.forms.TransactionRequestForm;
 import com.jocata.AMS.service.TransactionService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -33,6 +35,12 @@ public class TransactionController {
     @GetMapping("/admin/transactions")
     public List<TransactionForm> getAllTransactions() {
         return transactionService.getAllTransactions();
+    }
+    @GetMapping("/transactions/pdf")
+    public void generateTransactionPdf(@RequestParam Integer accountId, @RequestParam Integer month, HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=transactions.pdf");
+        transactionService.generateTransactionPdf(accountId, month, response.getOutputStream());
     }
 
 }
