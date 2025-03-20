@@ -36,7 +36,7 @@ public class TransactionController {
     public List<TransactionForm> getAllTransactions() {
         return transactionService.getAllTransactions();
     }
-    @GetMapping("/transactions/pdf")
+    @GetMapping("/admin/transactions/pdf")
     public void generateTransactionPdf(@RequestParam Integer accountId, @RequestParam Integer month, HttpServletResponse response) throws IOException {
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=transactions.pdf");

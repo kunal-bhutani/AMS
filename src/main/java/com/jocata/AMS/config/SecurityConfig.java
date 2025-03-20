@@ -44,6 +44,9 @@ public class SecurityConfig {
                                 .requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
                                 .requestMatchers("/api/user/**").hasAnyAuthority("USER", "ADMIN")
+                                .requestMatchers("/api/account/create").hasAnyAuthority("USER", "ADMIN")
+                                .requestMatchers("/api/account/**").hasAnyAuthority("USER", "ADMIN")
+
                                 .anyRequest().permitAll()
                 );
         return httpSecurity.build();

@@ -43,7 +43,7 @@ public class UserController {
         return userService.getUserByEmail(email);
     }
 
-    @PostMapping("/upload")
+    @PostMapping("/admin/upload")
     public String uploadProduct(@RequestParam("file") MultipartFile file) {
         if(file.isEmpty()) {
             return "file is empty";
